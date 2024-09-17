@@ -7,13 +7,14 @@ import {
   deletePoste 
 } from '../controllers/posteController.js';
 import { verificarToken } from '../middlewares/authMiddleware.js';
+import { Upload } from '../middlewares/fotoMiddleware.js';
 
 const router = express.Router();
 
-router.post('/poste/:id', verificarToken, createPoste);
+router.post('/poste/:id', verificarToken, Upload.single('foto'), createPoste);
 router.get('/poste', getAllPoste);
 router.get('/poste/:idUsuario', getPosteByIdUser);
-router.put('/poste/:id', verificarToken, updatePoste);
+router.put('/poste/:id', verificarToken, Upload.single('foto'), updatePoste);
 router.delete('/poste/:id', verificarToken, deletePoste);
 
 export default router;
