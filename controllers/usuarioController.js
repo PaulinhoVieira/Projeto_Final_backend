@@ -13,7 +13,8 @@ function gerarToken(payload) {
 }
 
 export const registrarUsuario = async (req, res) => {
-  const { nome, email, senha, foto } = req.body;
+  const { nome, email, senha} = req.body;
+  const foto = req.file ? req.file.path : null;
   const senhaCriptografada = encriptarSenha(senha);
 
   try {
@@ -72,7 +73,8 @@ export const getUsuarioById = async (req, res) => {
 
 export const updateUsuario = async (req, res) => {
   const { id } = req.params;
-  const { nome, email, senha, foto, perfil } = req.body;
+  const { nome, email, senha } = req.body;
+  const foto = req.file ? req.file.path : null;
 
   try {
     const usuario = await Usuario.findByPk(id);

@@ -9,7 +9,7 @@ const Poste = sequelize.define('Poste', {
   },
   foto: {
     type: DataTypes.STRING,  
-    allowNull: false,
+    allowNull: true,
   },
   idUsuario: {  
     type: DataTypes.INTEGER,

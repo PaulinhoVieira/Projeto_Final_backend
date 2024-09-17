@@ -1,7 +1,8 @@
 import Poste from '../models/poste.js';
 
 export const createPoste = async (req, res) => {
-  const { foto, descricao } = req.body;
+  const {descricao} = req.body;
+  const foto = req.file ? req.file.path : null;
   const idUsuario = req.params.id;  
   
   try {
@@ -35,7 +36,8 @@ export const getPosteByIdUser = async (req, res) => {
 
 export const updatePoste = async (req, res) => {
   const { id } = req.params;
-  const { foto, descricao } = req.body;
+  const {descricao} = req.body;
+  const foto = req.file ? req.file.path : null;
 
   try {
     const poste = await Poste.findByPk(id);

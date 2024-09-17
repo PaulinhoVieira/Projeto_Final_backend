@@ -5,7 +5,7 @@ import path from 'path';
 const createStorage = () => {
   return multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, `uploads/`);  
+      cb(null, `uploads`);  
     },
     filename: (req, file, cb) => {
       const ext = path.extname(file.originalname);
@@ -17,6 +17,7 @@ const createStorage = () => {
 
 
 const Upload = multer({
+  storage: createStorage(),
   limits: { fileSize: 2 * 1024 * 1024 },  
   fileFilter: (req, file, cb) => {
     const filetypes = /jpeg|jpg|png|gif/;
